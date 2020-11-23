@@ -1,0 +1,14 @@
+{% extends 'basepagina.html' %}
+{% block contenido%}
+{% load static %}
+<div class="alert alert-success fade in">
+                  <button data-dismiss="alert" class="close close-sm" type="button">
+                                      <i class="icon-remove"></i>
+                                  </button>
+                  <center><h3><strong>Bienvenido!</strong> <strong>{{user.first_name }} {{user.last_name }}</strong>, Administrador de Calzado UMG.</h3></center>
+
+                  
+                                <center><img alt="" src="{% static 'img/bienvenido.png' %}"></center>
+                            
+           </div>
+{% endblock %}
