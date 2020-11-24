@@ -1,0 +1,22 @@
+{% extends 'basepagina.html' %}
+{% block contenido%}
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+ <form  method="post" class="form-horizontal" >
+ 	{% csrf_token %}
+   <div class="alert alert-block alert-danger fade in">
+ 	 <strong>¡Eliminar!</strong> Esta seguro de querer eliminar el siguiente registro de Usuaio: Nombre de Usuario: <strong>{{ object.username }}</strong> Nombres y Apellidos: <strong>{{ object.first_name}} {{ object.last_name}}</strong><br><br>
+  
+ 	 <button  class="btn btn-danger" type="submit">Si</button>
+     <a class="btn btn-success" href="{% url 'appCalzado:listaUsuario' %}" >Cancelar</a>
+   </div>    
+ </form>
+
+</body>
+</html>
+
+{% endblock %}

@@ -4,10 +4,11 @@ from django.urls import reverse_lazy
 from django.shortcuts import redirect
 
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth.models import User
 from django.contrib.auth import login, logout
 from django.views.generic import TemplateView, FormView, CreateView, ListView, DeleteView, UpdateView
 
-from .forms import CrearFilialForm, CrearTrabajadoresForm
+from .forms import CrearFilialForm, CrearTrabajadoresForm, RegistrarUsuarioForm
 from .models import RegistrarFilialModel, RegistrarTrabajadoresModel
 
 # Create your views here.
@@ -83,4 +84,31 @@ class LoginView(FormView):
 def logoutview(request):
 	logout(request)
 	return redirect ('appCalzado:login')
+
+#modelos para creacion de usuario----------------------------------------------------
+
+class RegistrarUsuarioView(CreateView):
+    model = User
+    template_name='crear_usuario.html'
+    form_class= RegistrarUsuarioForm
+    success_url = reverse_lazy('appCalzado:listaUsuario')
+
+class ListaUsuarioView(ListView):
+	template_name = 'lista_usuario.html'
+	model = User
+	paginate_by = 6
+
+	def get_queryset(self):
+		return User.objects.all().order_by('id')
+
+class EliminarUsuarioView(DeleteView):
+	model = User
+	template_name = 'eliminar_usuario.html'
+	success_url = reverse_lazy('appCalzado:listaUsuario')
+
+class EditarUsuarioView(UpdateView):
+	model = User
+	form_class = RegistrarUsuarioForm
+	template_name = 'editar_usuario.html'
+	success_url = reverse_lazy('appCalzado:listaUsuario')
 

@@ -142,13 +142,13 @@
 
           <li class="sub-menu">
             <a href="javascript:;" class="">
-                          <i class="icon_id-2"></i>
+                          <i class="icon_cog"></i>
                           <span><strong>Administrar</strong></span>
                           <span class="menu-arrow arrow_carrot-right"></span>
                       </a>
             <ul class="sub">
-              <li><a class="" href="">Crear Usuario</a></li>
-              <li><a class="" href="">Usuarios Registrados</a></li>
+              <li><a class="" href="{% url 'appCalzado:registrarUsuario' %}">Crear Usuario</a></li>
+              <li><a class="" href="{% url 'appCalzado:listaUsuario' %}">Usuarios Registrados</a></li>
           </li>
 
         <!-- sidebar menu end-->

@@ -2,9 +2,27 @@ from django import forms
 from datetime import datetime
 from django.forms import *
 
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 from .models import RegistrarFilialModel, RegistrarTrabajadoresModel
 
 # creacion de forms
+
+class RegistrarUsuarioForm(UserCreationForm):
+    class Meta:
+        model=User
+        fields=['username', 'first_name', 'last_name','email', 'password1', 'password2']
+
+        widgets = {
+
+        'username': TextInput(attrs={'class': 'form-control', 'id': 'username', 'autocomplete':'off'}),
+        'first_name': TextInput(attrs={'class': 'form-control', 'id': 'first_name', 'autocomplete':'off'}),
+        'last_name': TextInput(attrs={'class': 'form-control', 'id': 'last_name', 'autocomplete':'off'}),
+        'email': TextInput(attrs= {'class': 'form-control','placeholder': 'email','autocomplete' : "off",}),
+        'password1': PasswordInput(attrs={'class': 'form-control', 'id':'password1', 'type':'password'}),
+        'password2': PasswordInput(attrs={'class': 'form-control'}),
+        
+        }
 
 class CrearFilialForm(ModelForm):
 	class Meta:
