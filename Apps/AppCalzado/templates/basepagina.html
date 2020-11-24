@@ -118,41 +118,28 @@
         
             <li class="sub-menu">
             <a href="javascript:;" class="">
-                          <i class="icon_profile"></i>
-                          <span><strong>Medicos</strong></span>
+                          <i class="icon_house_alt"></i>
+                          <span><strong>Filiales</strong></span>
                           <span class="menu-arrow arrow_carrot-right"></span>
                       </a>
             <ul class="sub">
-              <li><a class="" href="">EJEMPLO</a></li>
-             
-            </ul>
-          </li>
-          <li class="sub-menu">
-            <a href="javascript:;" class="">
-                          <i class="icon_plus-box"></i>
-                          <span><strong>Enfermeras/os</strong></span>
-                          <span class="menu-arrow arrow_carrot-right"></span>
-                      </a>
-            <ul class="sub">
-              <li><a class="" href="">EJEMPLO</a></li>
-              
-            </ul>
-          </li>
-          <li class="sub-menu">
-            <a href="javascript:;" class="">
-                          <i class=" icon_group"></i>
-                          <span><strong>Pacientes</strong></span>
-                          <span class="menu-arrow arrow_carrot-right"></span>
-                      </a>
-            <ul class="sub">
-              <li><a class="" href="">Ejemplo</a></li>
-              
+              <li><a class="" href="{% url 'appCalzado:registrarFilial' %}">Registrar Filiales</a></li>
+              <li><a class="" href="{% url 'appCalzado:registrosFiliales' %}">Registros de Filiales</a></li>
             </ul>
           </li>
 
-      
+          <li class="sub-menu">
+            <a href="javascript:;" class="">
+                          <i class="icon_id"></i>
+                          <span><strong>Trabajadores</strong></span>
+                          <span class="menu-arrow arrow_carrot-right"></span>
+                      </a>
+            <ul class="sub">
+              <li><a class="" href="{% url 'appCalzado:registrarTrabajador' %}">Registrar Trabajadores</a></li>
+              <li><a class="" href="{% url 'appCalzado:registrosTrabajadores' %}">Reg. de Trabajadores</a></li>
+            </ul>
+          </li>
 
-      
           <li class="sub-menu">
             <a href="javascript:;" class="">
                           <i class="icon_id-2"></i>

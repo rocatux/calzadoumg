@@ -22,6 +22,22 @@ from .views import *
 app_name="appCalzado" 
 
 urlpatterns = [
+#inicio
 path('inicio/', login_required(IndexView.as_view()), name= 'inicio'),
-    
+
+#resgistrar
+path('RegistrarFilial/', login_required(RegistrarFilialView.as_view()), name= 'registrarFilial'),
+path('RegistrarTrabajador/', login_required(RegistrarTrabajadoresView.as_view()), name= 'registrarTrabajador'),
+
+#registros
+path('RegistrosFiliales/', login_required(ListaFilialesView.as_view()), name= 'registrosFiliales'),
+path('RegistrosTrabajadores/', login_required(ListaTrabajadoresView.as_view()), name= 'registrosTrabajadores'),
+
+#eliminarregistros
+path('EliminarFilial/<int:pk>/',login_required(EliminarFilialView.as_view()), name='eliminarFilial'),
+path('EliminarTrabajador/<int:pk>/',login_required(EliminarTrabajadorView.as_view()), name='eliminarTrabajador'),
+
+#editar
+path('EditarFilial/<int:pk>/',login_required(EditarFilialView.as_view()), name='editarFilial'),
+path('EditarTrabajador/<int:pk>/',login_required(EditarTrabajadorView.as_view()), name='editarTrabajador'),
 ]
