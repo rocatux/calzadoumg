@@ -13,6 +13,8 @@ from .models import RegistrarFilialModel, RegistrarTrabajadoresModel
 
 # Create your views here.
 
+
+
 #clases de inicio--------------------------------------------------------------------
 
 class IndexView(TemplateView):
@@ -111,4 +113,10 @@ class EditarUsuarioView(UpdateView):
 	form_class = RegistrarUsuarioForm
 	template_name = 'editar_usuario.html'
 	success_url = reverse_lazy('appCalzado:listaUsuario')
+
+
+#404--------------------------------------------------------------------------------
+
+def error_404_view(request,exception):
+	return render(request,'404.html')
 
