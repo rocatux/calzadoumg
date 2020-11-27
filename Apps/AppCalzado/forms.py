@@ -4,7 +4,7 @@ from django.forms import *
 
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from .models import RegistrarFilialModel, RegistrarTrabajadoresModel
+from .models import RegistrarFilialModel, RegistrarTrabajadoresModel, RegistroExtrasModel
 
 # creacion de forms
 
@@ -52,4 +52,33 @@ class CrearTrabajadoresForm(ModelForm):
 	    'tipo': Select(attrs= {'class': 'form-control m-bot15',}),
 	    'dpi': TextInput(attrs= {'class': 'form-control','placeholder': 'dpi','autocomplete' : "off",}),
 	    'fechaCreacion': DateInput(format='%Y-%m-%d', attrs= {'readonly': True,'class': 'form-control','value': datetime.now().strftime('%Y-%m-%d'),}),
+	    'filialBase': Select(attrs= {'class': 'form-control m-bot15',}),
+	    'sueldo': NumberInput(attrs= {'class': 'form-control', 'autocomplete' : "off",}),
 	    }
+
+class CrearHorasExtrasForm(ModelForm):
+	class Meta:
+		model = RegistroExtrasModel 
+		fields = '__all__'
+
+		widgets = {
+		'motivo': TextInput(attrs= {'class': 'form-control', 'placeholder': 'escriba descripcion','autocomplete' : "off",}),
+		'fecha': DateInput(attrs= {'readonly': True,'class': 'form-control','placeholder': 'fecha',}),
+		'cantidadHorasExtras':NumberInput(attrs= {'class': 'form-control',  'maxlength':'6', 'autocomplete' : "off",}),
+		'trabajador': Select(attrs= {'class': 'form-control m-bot15',}),
+		'filialExtras': Select(attrs= {'class': 'form-control m-bot15',}),
+		}
+
+#form secundario para edicion de datos
+class CrearHorasExtrasForm2(ModelForm):
+	class Meta:
+		model = RegistroExtrasModel 
+		fields = '__all__'
+
+		widgets = {
+		'motivo': TextInput(attrs= {'class': 'form-control', 'placeholder': 'escriba descripcion','autocomplete' : "off",}),
+		'fecha': DateInput(attrs= {'readonly': True,'class': 'form-control','placeholder': 'fecha',}),
+		'cantidadHorasExtras':NumberInput(attrs= {'class': 'form-control',  'maxlength':'6', 'autocomplete' : "off",}),
+		'trabajador': Select(attrs= {'readonly':'readonly', 'class': 'form-control m-bot15',}),
+		'filialExtras': Select(attrs= {'class': 'form-control m-bot15',}),
+		}

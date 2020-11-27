@@ -9,7 +9,7 @@
  <form  method="post" class="form-horizontal" >
  	{% csrf_token %}
    <div class="alert alert-block alert-danger fade in">
- 	 <strong>¡Eliminar!</strong> Esta seguro de querer eliminar el siguiente registro de tranbajador: <strong>{{ object.nombres }}, {{ object.apellidos}} {{ object.dpi}}  </strong><br><br>
+ 	 <strong>¡Eliminar!</strong> Esta seguro de querer eliminar el siguiente registro de trabajador: <strong>{{ object.nombres }}, {{ object.apellidos}} {{ object.dpi}}  </strong><br><br>
   
  	 <button  class="btn btn-danger" type="submit">Si</button>
      <a class="btn btn-success" href="{% url 'appCalzado:registrosTrabajadores' %}" >Cancelar</a>

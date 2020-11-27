@@ -8,8 +8,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth import login, logout
 from django.views.generic import TemplateView, FormView, CreateView, ListView, DeleteView, UpdateView
 
-from .forms import CrearFilialForm, CrearTrabajadoresForm, RegistrarUsuarioForm
-from .models import RegistrarFilialModel, RegistrarTrabajadoresModel
+from .forms import CrearFilialForm, CrearTrabajadoresForm, RegistrarUsuarioForm, CrearHorasExtrasForm, CrearHorasExtrasForm2
+from .models import RegistrarFilialModel, RegistrarTrabajadoresModel, RegistroExtrasModel
 
 # Create your views here.
 
@@ -72,7 +72,7 @@ class EditarTrabajadorView(UpdateView):
 	template_name = 'editar_trabajador.html'
 	success_url = reverse_lazy('appCalzado:registrosTrabajadores')
 
-#clase login metodo logout------------------------------------------------------------
+#clase login metodo logout---------------------------------------------------------------
 
 class LoginView(FormView):
 	template_name='login.html'
@@ -87,7 +87,7 @@ def logoutview(request):
 	logout(request)
 	return redirect ('appCalzado:login')
 
-#modelos para creacion de usuario----------------------------------------------------
+#modelos para creacion de usuario---------------------------------------------------------
 
 class RegistrarUsuarioView(CreateView):
     model = User
@@ -114,8 +114,34 @@ class EditarUsuarioView(UpdateView):
 	template_name = 'editar_usuario.html'
 	success_url = reverse_lazy('appCalzado:listaUsuario')
 
+#modelo para registro de horas extras----------------------------------------------------
 
-#404--------------------------------------------------------------------------------
+class RegistrarHorasExtrasView(CreateView):
+    model = RegistroExtrasModel
+    template_name='registrar_horasextras.html'
+    form_class= CrearHorasExtrasForm
+    success_url = reverse_lazy('appCalzado:registrosHorasExtras')
+
+class RegistrosDeHorasExtrasView(ListView):
+	template_name = 'lista_horasextras.html'
+	model = RegistroExtrasModel
+	paginate_by = 6
+
+	def get_queryset(self):
+		return RegistroExtrasModel.objects.all().order_by('id')
+
+class EliminarRegistroHExtrasView(DeleteView):
+	model = RegistroExtrasModel
+	template_name = 'eliminar_registrosextras.html'
+	success_url = reverse_lazy('appCalzado:registrosHorasExtras')
+
+class EditarHorasExtrasView(UpdateView):
+	model = RegistroExtrasModel
+	form_class = CrearHorasExtrasForm2
+	template_name = 'editar_horasextras.html'
+	success_url = reverse_lazy('appCalzado:registrosHorasExtras')
+
+#404-------------------------------------------------------------------------------------
 
 def error_404_view(request,exception):
 	return render(request,'404.html')

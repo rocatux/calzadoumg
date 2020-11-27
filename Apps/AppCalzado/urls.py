@@ -29,19 +29,24 @@ path('inicio/', login_required(IndexView.as_view()), name= 'inicio'),
 path('RegistrarFilial/', login_required(RegistrarFilialView.as_view()), name= 'registrarFilial'),
 path('RegistrarTrabajador/', login_required(RegistrarTrabajadoresView.as_view()), name= 'registrarTrabajador'),
 path('RegistrarUsuario/', RegistrarUsuarioView.as_view(), name='registrarUsuario'),
+path('RegistrarHorasExtras/', RegistrarHorasExtrasView.as_view(), name='registrarHorasExtras'),
 
 #registros
 path('RegistrosFiliales/', login_required(ListaFilialesView.as_view()), name= 'registrosFiliales'),
 path('RegistrosTrabajadores/', login_required(ListaTrabajadoresView.as_view()), name= 'registrosTrabajadores'),
 path('ListaUsuarios/', login_required(ListaUsuarioView.as_view()), name='listaUsuario'),
+path('RegistrosHorasExtras/', login_required(RegistrosDeHorasExtrasView.as_view()), name='registrosHorasExtras'),
 
 #eliminarregistros
 path('EliminarFilial/<int:pk>/',login_required(EliminarFilialView.as_view()), name='eliminarFilial'),
 path('EliminarTrabajador/<int:pk>/',login_required(EliminarTrabajadorView.as_view()), name='eliminarTrabajador'),
 path('EliminarUsuario/<int:pk>/',login_required(EliminarUsuarioView.as_view()), name='eliminarUsuario'),
+path('EliminarHorasExtras/<int:pk>/',login_required(EliminarRegistroHExtrasView.as_view()), name='eliminarHorasExtras'),
+
 
 #editar
 path('EditarFilial/<int:pk>/',login_required(EditarFilialView.as_view()), name='editarFilial'),
 path('EditarTrabajador/<int:pk>/',login_required(EditarTrabajadorView.as_view()), name='editarTrabajador'),
 path('EditarUsuario/<int:pk>/',login_required(EditarUsuarioView.as_view()), name='editarUsuario'),
+path('EditarHorasExtras<int:pk>/',login_required(EditarHorasExtrasView.as_view()), name='editarHorasExtras'),
 ]
