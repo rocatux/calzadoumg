@@ -9,7 +9,8 @@ from django.contrib.auth import login, logout
 from django.views.generic import TemplateView, FormView, CreateView, ListView, DeleteView, UpdateView
 
 from .forms import CrearFilialForm, CrearTrabajadoresForm, RegistrarUsuarioForm, CrearHorasExtrasForm, CrearHorasExtrasForm2
-from .models import RegistrarFilialModel, RegistrarTrabajadoresModel, RegistroExtrasModel
+from .forms import CalculoSueldoForm
+from .models import RegistrarFilialModel, RegistrarTrabajadoresModel, RegistroExtrasModel, CalculoSueldoModel
 
 # Create your views here.
 
@@ -145,4 +146,32 @@ class EditarHorasExtrasView(UpdateView):
 
 def error_404_view(request,exception):
 	return render(request,'404.html')
+
+
+#Calculo sueldo y registro---------------------------------------------------------------
+
+class CalculoSueldoView(CreateView):
+    model = CalculoSueldoModel
+    template_name='calculosueldo.html'
+    form_class= CalculoSueldoForm
+    success_url = reverse_lazy('appCalzado:registrosSueldos')
+
+class RegistrosSueldosView(ListView):
+	template_name = 'lista_sueldos.html'
+	model = CalculoSueldoModel
+	paginate_by = 6
+
+	def get_queryset(self):
+		return CalculoSueldoModel.objects.all().order_by('id')
+
+class EliminarSueldoView(DeleteView):
+	model = CalculoSueldoModel
+	template_name = 'eliminar_sueldo.html'
+	success_url = reverse_lazy('appCalzado:registrosSueldos')
+
+class EditarSueldoView(UpdateView):
+	model = CalculoSueldoModel
+	form_class = CalculoSueldoForm
+	template_name = 'editar_sueldo.html'
+	success_url = reverse_lazy('appCalzado:registrosSueldos')
 

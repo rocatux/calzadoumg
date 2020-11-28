@@ -4,7 +4,7 @@ from django.forms import *
 
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from .models import RegistrarFilialModel, RegistrarTrabajadoresModel, RegistroExtrasModel
+from .models import RegistrarFilialModel, RegistrarTrabajadoresModel, RegistroExtrasModel, CalculoSueldoModel
 
 # creacion de forms
 
@@ -81,4 +81,19 @@ class CrearHorasExtrasForm2(ModelForm):
 		'cantidadHorasExtras':NumberInput(attrs= {'class': 'form-control',  'maxlength':'6', 'autocomplete' : "off",}),
 		'trabajador': Select(attrs= {'readonly':'readonly', 'class': 'form-control m-bot15',}),
 		'filialExtras': Select(attrs= {'class': 'form-control m-bot15',}),
+		}
+
+class CalculoSueldoForm(ModelForm):
+	class Meta:
+		model = CalculoSueldoModel 
+		fields = '__all__'
+
+		widgets = {
+		'horasTrabajadasMes':NumberInput(attrs= {'class': 'form-control',  'maxlength':'3', 'autocomplete' : "off",}),
+		'sueldoHora': NumberInput(attrs= {'class': 'form-control', 'autocomplete' : "off",}),
+		'horasExtrasMes':NumberInput(attrs= {'class': 'form-control',  'maxlength':'3', 'autocomplete' : "off",}),
+		'totalPagar':NumberInput(attrs= {'class': 'form-control',  'maxlength':'3', 'autocomplete' : "off",}),
+		'trabajador': Select(attrs= {'class': 'form-control m-bot15',}),
+		'horasExtras': Select(attrs= {'class': 'form-control m-bot15',}),
+		'mes': Select(attrs= {'class': 'form-control m-bot15',}),
 		}

@@ -52,5 +52,33 @@ class RegistroExtrasModel (models.Model):
 	trabajador = models.ForeignKey(RegistrarTrabajadoresModel, null = False, blank=False, on_delete = models.CASCADE)
 	filialExtras = models.ForeignKey(RegistrarFilialModel, null = False, blank=False, on_delete = models.CASCADE)
 
-	
+	def __str__(self):
+		return '%s'%(self.motivo)
+
+class CalculoSueldoModel (models.Model):
+	horasTrabajadasMes = models.PositiveIntegerField(null= False)
+	sueldoHora = models.DecimalField(max_digits=5, decimal_places=2, null=False)
+	horasExtrasMes = models.PositiveIntegerField()
+	totalPagar = models.DecimalField(max_digits=5, decimal_places=2, null=True, blank=True)
+	mes_select = ( ('Enero','Enero'),
+		       ('Febrero','Febrero'),
+		       ('Marzo','Marzo'),
+		       ('Abril','Abril'),
+		       ('Mayo','Mayo'),
+		       ('Junio','Junio'),
+		       ('Julio','Julio'),
+		       ('Agosto','Agosto'),
+		       ('Septiembre','Septiembre'),
+		       ('Octubre','Octubre'),
+		       ('Noviembre','Noviembre'),
+		       ('Diciembre','Diciembre'),
+		       )
+	mes = models.CharField(
+		max_length=30,
+		choices=mes_select,
+		default= 'Enero',
+		)
+	trabajador = models.ForeignKey(RegistrarTrabajadoresModel, null = False, blank=False, on_delete = models.CASCADE)
+	horasExtras = models.ForeignKey(RegistroExtrasModel, null = False, blank=False, on_delete = models.CASCADE)
+
 
